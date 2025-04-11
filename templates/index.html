@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latin Processing Web Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero-section {
+            background-color: #f8f9fa;
+            padding: 5rem 0;
+            margin-bottom: 2rem;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #0d6efd;
+        }
+        .footer {
+            background-color: #f8f9fa;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        .processing-status {
+            display: none;
+        }
+        .upload-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .drop-zone {
+            border: 2px dashed #0d6efd;
+            border-radius: 5px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .drop-zone:hover {
+            background-color: #f1f7ff;
+        }
+        .preview-container {
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Latin Processing App</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 mb-4">16th Century Latin Processing</h1>
+            <p class="lead mb-5">Upload your early 16th century Latin manuscripts for automatic correction and Dutch translation with elegant three-column layout.</p>
+            <a href="#upload" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Upload Section -->
+    <section id="upload" class="container mb-5">
+        <h2 class="text-center mb-4">Upload Your Documents</h2>
+        <div class="upload-form">
+            <div class="drop-zone" id="drop-zone">
+                <div class="drop-zone-prompt">
+                    <div class="feature-icon">📄</div>
+                    <h5>Drag & Drop your DOCX files here</h5>
+                    <p>or click to browse files</p>
+                    <input type="file" id="file-input" class="d-none" accept=".docx" multiple>
+                </div>
+            </div>
+            <div class="selected-files mt-3" id="selected-files"></div>
+            <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-primary" id="process-btn" disabled>Process Documents</button>
+            </div>
+        </div>
+
+        <!-- Processing Status -->
+        <div class="processing-status mt-5" id="processing-status">
+            <h3 class="text-center mb-4">Processing Your Documents</h3>
+            <div class="progress mb-3">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%"></div>
+            </div>
+            <p class="text-center" id="status-message">Preparing to process your documents...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div class="preview-container" id="results-container" style="display: none;">
+            <h3 class="text-center mb-4">Processed Documents</h3>
+            <div class="row" id="results-list">
+                <!-- Results will be added here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="container mb-5">
+        <h2 class="text-center mb-5">How It Works</h2>
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="feature-icon">📤</div>
+                <h4>Upload</h4>
+                <p>Upload your 16th century Latin manuscript DOCX files through our simple interface.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="feature-icon">🔄</div>
+                <h4>Process</h4>
+                <p>Our system corrects Latin transcription errors and translates to convivial Dutch.</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <div class="feature-icon">📥</div>
+                <h4>Download</h4>
+                <p>Download your processed documents with elegant three-column A3 layout.</p>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h4>Latin Correction</h4>
+                <p>Our system is specialized for early 16th century Latin manuscripts, focusing on transcription errors while staying close to the original text. It preserves period-specific abbreviations and spelling characteristics while making necessary corrections.</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Dutch Translation</h4>
+                <p>The translation creates accessible, friendly Dutch that modern readers can easily engage with while maintaining fidelity to the original Latin meaning and tone. It preserves the warmth and personality of the original correspondence.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container">
+        <h2 class="text-center mb-5">About This Project</h2>
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <p>This web application is designed to help scholars, researchers, and enthusiasts working with early 16th century Latin manuscripts. It combines advanced AI technology with specialized knowledge of historical Latin texts to provide accurate corrections and translations.</p>
+                <p>The output is formatted in an elegant three-column A3 landscape layout that simulates facing pages in a book, with Latin text and Dutch translation properly centered on their respective A4 areas, separated by an appropriate gutter.</p>
+                <p>This tool is particularly useful for archives, universities, libraries, and individual researchers working with historical Latin correspondence and documents.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer mt-5">
+        <div class="container text-center">
+            <p>© 2025 Latin Processing Web Application</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('drop-zone');
+            const fileInput = document.getElementById('file-input');
+            const selectedFiles = document.getElementById('selected-files');
+            const processBtn = document.getElementById('process-btn');
+            const processingStatus = document.getElementById('processing-status');
+            const statusMessage = document.getElementById('status-message');
+            const progressBar = document.querySelector('.progress-bar');
+            const resultsContainer = document.getElementById('results-container');
+            const resultsList = document.getElementById('results-list');
+            
+            // Handle file selection via click
+            dropZone.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // Handle drag and drop
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('bg-light');
+            });
+            
+            dropZone.addEventListener('dragleave', () => {
+                dropZone.classList.remove('bg-light');
+            });
+            
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('bg-light');
+                
+                if (e.dataTransfer.files.length > 0) {
+                    handleFiles(e.dataTransfer.files);
+                }
+            });
+            
+            // Handle file input change
+            fileInput.addEventListener('change', () => {
+                if (fileInput.files.length > 0) {
+                    handleFiles(fileInput.files);
+                }
+            });
+            
+            // Process button click
+            processBtn.addEventListener('click', () => {
+                // In a real implementation, this would send files to the server
+                simulateProcessing();
+            });
+            
+            // Handle selected files
+            function handleFiles(files) {
+                selectedFiles.innerHTML = '';
+                let validFiles = 0;
+                
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    
+                    // Check if file is a DOCX
+                    if (file.name.endsWith('.docx')) {
+                        validFiles++;
+                        
+                        // Create file item
+                        const fileItem = document.createElement('div');
+                        fileItem.className = 'alert alert-primary d-flex justify-content-between align-items-center';
+                        fileItem.innerHTML = `
+                            <span>${file.name} (${formatFileSize(file.size)})</span>
+                            <button type="button" class="btn-close" aria-label="Remove"></button>
+                        `;
+                        
+                        // Add remove functionality
+                        const removeBtn = fileItem.querySelector('.btn-close');
+                        removeBtn.addEventListener('click', () => {
+                            fileItem.remove();
+                            updateProcessButton();
+                        });
+                        
+                        selectedFiles.appendChild(fileItem);
+                    }
+                }
+                
+                updateProcessButton();
+            }
+            
+            // Update process button state
+            function updateProcessButton() {
+                const fileItems = selectedFiles.querySelectorAll('.alert');
+                processBtn.disabled = fileItems.length === 0;
+            }
+            
+            // Format file size
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' bytes';
+                else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                else return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+            
+            // Simulate processing (for demo purposes)
+            function simulateProcessing() {
+                // Show processing status
+                processingStatus.style.display = 'block';
+                
+                // Hide upload form
+                dropZone.style.display = 'none';
+                selectedFiles.style.display = 'none';
+                processBtn.style.display = 'none';
+                
+                // Simulate progress
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += 5;
+                    progressBar.style.width = progress + '%';
+                    
+                    if (progress < 30) {
+                        statusMessage.textContent = 'Uploading documents...';
+                    } else if (progress < 60) {
+                        statusMessage.textContent = 'Correcting Latin text...';
+                    } else if (progress < 90) {
+                        statusMessage.textContent = 'Translating to Dutch...';
+                    } else {
+                        statusMessage.textContent = 'Formatting documents...';
+                    }
+                    
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(showResults, 500);
+                    }
+                }, 200);
+            }
+            
+            // Show results
+            function showResults() {
+                processingStatus.style.display = 'none';
+                resultsContainer.style.display = 'block';
+                
+                // Get file names
+                const fileItems = selectedFiles.querySelectorAll('.alert');
+                resultsList.innerHTML = '';
+                
+                fileItems.forEach((item, index) => {
+                    const fileName = item.querySelector('span').textContent.split(' (')[0];
+                    
+                    const resultCard = document.createElement('div');
+                    resultCard.className = 'col-md-6 mb-4';
+                    resultCard.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">${fileName}</h5>
+                                <p class="card-text">Successfully processed with Latin correction and Dutch translation.</p>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-outline-primary btn-sm preview-btn">Preview</button>
+                                    <a href="#" class="btn btn-primary btn-sm download-btn">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    resultsList.appendChild(resultCard);
+                });
+                
+                // Add compiled document card
+                const compiledCard = document.createElement('div');
+                compiledCard.className = 'col-12 mt-3';
+                compiledCard.innerHTML = `
+                    <div class="card bg-light">
+                        <div class="card-body">
+                            <h5 class="card-title">Compiled Document</h5>
+                            <p class="card-text">All processed documents combined into a single file with table of contents.</p>
+                            <div class="d-flex justify-content-end">
+                                <a href="#" class="btn btn-success download-btn">Download Compiled Document</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                resultsList.appendChild(compiledCard);
+                
+                // Add "Process More" button
+                const processMoreBtn = document.createElement('div');
+                processMoreBtn.className = 'col-12 mt-4 text-center';
+                processMoreBtn.innerHTML = `
+                    <button class="btn btn-outline-primary" id="process-more-btn">Process More Documents</button>
+                `;
+                
+                resultsList.appendChild(processMoreBtn);
+                
+                // Add event listener for "Process More" button
+                document.getElementById('process-more-btn').addEventListener('click', () => {
+                    // Reset the UI
+                    resultsContainer.style.display = 'none';
+                    dropZone.style.display = 'block';
+                    selectedFiles.style.display = 'block';
+                    processBtn.style.display = 'block';
+                    selectedFiles.innerHTML = '';
+                    updateProcessButton();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
